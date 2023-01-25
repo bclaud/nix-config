@@ -42,13 +42,13 @@
 
   # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "nclaud";
+    homeDirectory = "/home/nclaud";
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ neovim wezterm lazygit ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
