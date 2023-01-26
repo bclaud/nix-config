@@ -13,7 +13,9 @@
     # You can also split up your configuration and import pieces of it here:
     ./git.nix
     ./direnv.nix
-    ./lunarvim.nix { lunarvim = inputs.lunarvim; }
+    ./wezterm.nix
+    ./nvim.nix
+    # ./lunarvim.nix { lunarvim = inputs.lunarvim; }
   ];
 
   nixpkgs = {
@@ -50,7 +52,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ neovim wezterm lazygit ];
+  home.packages = with pkgs; [ lazygit lazydocker ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

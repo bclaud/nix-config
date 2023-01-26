@@ -23,7 +23,7 @@
       target = ".local/share/lunarvim/lvim";
     };
     lvim_config = {
-      source = "./config";
+      source = "./lunarvim";
       target = ".config/lvim";
       recursive = true;
     };
