@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ neovim fzf unzip clang alejandra ];
+  home.packages = with pkgs; [ neovim fzf unzip clang ripgrep fd ];
 
   xdg.configFile.nvim = {
     source = ./nvim;

@@ -16,9 +16,9 @@ return {
 
   color_scheme = "Elemental",
   -- window_background_opacity = 0.0,
-  window_decorations = "RESIZE",
+  -- window_decorations = "RESIZE",
 
-  -- default_prog = { '/usr/bin/fish', '-l' }
+  default_prog = { 'fish', '-l' }
   
   }
 

@@ -15,7 +15,7 @@
     ./direnv.nix
     ./wezterm.nix
     ./nvim.nix
-    # ./lunarvim.nix { lunarvim = inputs.lunarvim; }
+    ./fish.nix
   ];
 
   nixpkgs = {
