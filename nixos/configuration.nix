@@ -13,8 +13,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernelParams = [ "mitigations=off" ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -93,11 +94,11 @@
   users.users.nclaud = {
     isNormalUser = true;
     description = "nclaud";
+    home = "/home/nclaud";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      google-chrome
-    #  thunderbird
+      git
     ];
   };
 
