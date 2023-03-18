@@ -1,7 +1,18 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }: 
+let
+  # not working rn, needs both steam and gamescope
+  gamescopeSteam = pkgs.makeDesktopItem {
+    name = "Steam (Gamescope)";
+    exec = "${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -w 1920 -h 1080 -U -i -f -e -- ${pkgs.steam}/bin/steam -tenfoot -steamos -fulldesktopres";
+    comment = "Steam big picture running in gamescope";
+    desktopName = "Steam (Gamescope)";
+    categories = [ "Game" ];
+  };
+
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -16,6 +27,7 @@
     ./wezterm.nix
     ./nvim.nix
     ./fish.nix
+    #./mangohud.nix
   ];
 
   nixpkgs = {
@@ -50,9 +62,10 @@
     homeDirectory = "/home/nclaud";
   };
 
+
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker ];
+  home.packages = with pkgs; [ lazygit lazydocker steam ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

@@ -62,6 +62,9 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  #testing hidpi
+  hardware.video.hidpi.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -87,6 +90,8 @@
   hardware.opengl.driSupport32Bit = true;  
   hardware.opengl.extraPackages = with pkgs; [ amdvlk ];
 
+  environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
+
   # aditional software
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
@@ -110,7 +115,11 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-  ];
+    gnome.gnome-tweaks
+    #trying hyprland
+    kitty
+    pciutils 
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -8,7 +8,7 @@ local padding = {
 }
 
 return {
-  font_size = 15.0,
+  font_size = 17.0,
   font = wezterm.font("JetBrains Mono"),
 
   window_padding = padding,

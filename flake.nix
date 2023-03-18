@@ -19,9 +19,11 @@
       url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
       flake = false;
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager, lunarvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, lunarvim, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -76,6 +78,8 @@
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
+            #hyprland.homeManagerModules.default
+            #{wayland.windowManager.hyprland.enable = true;}
           ];
         };
       };
