@@ -6,11 +6,24 @@ let
   # not working rn, needs both steam and gamescope
   gamescopeSteam = pkgs.makeDesktopItem {
     name = "Steam (Gamescope)";
-    exec = "${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -w 1920 -h 1080 -U -i -f -e -- ${pkgs.steam}/bin/steam -tenfoot -steamos -fulldesktopres";
+    exec = "${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -w 2560 -h 1440 -U -i -f -e -- ${pkgs.steam}/bin/steam -tenfoot -steamos -fulldesktopres";
     comment = "Steam big picture running in gamescope";
     desktopName = "Steam (Gamescope)";
     categories = [ "Game" ];
   };
+
+  steamTest = pkgs.steam.override {extraPkgs = pkgs: with pkgs; [
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXinerama
+    xorg.libXScrnSaver
+    libpng
+    libpulseaudio
+    libvorbis
+    stdenv.cc.cc.lib
+    libkrb5
+    keyutils
+  ];};
 
 in {
   # You can import other home-manager modules here
@@ -65,7 +78,7 @@ in {
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker steam ];
+  home.packages = with pkgs; [ lazygit lazydocker steamTest gamescope gamescopeSteam ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

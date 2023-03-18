@@ -8,14 +8,14 @@ local padding = {
 }
 
 return {
+  enable_wayland = true,
   font_size = 17.0,
   font = wezterm.font("JetBrains Mono"),
 
-  window_padding = padding,
   hide_tab_bar_if_only_one_tab = true,
 
-  color_scheme = "Elemental",
-  -- window_background_opacity = 0.0,
+  color_scheme = "Dark Pastel",
+  window_background_opacity = 0.75,
   -- window_decorations = "RESIZE",
 
   default_prog = { 'fish', '-l' }
