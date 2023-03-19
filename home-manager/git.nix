@@ -1,5 +1,5 @@
 {...}: {
-  programs.git = { 
+  programs.git = {
     enable = true;
     userName = "Bruno Claudino";
     userEmail = "bruarrais@gmail.com";
@@ -14,5 +14,4 @@
       cs = "commit -S -m";
     };
   };
-
 }

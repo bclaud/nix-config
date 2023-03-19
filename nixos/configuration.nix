@@ -1,21 +1,25 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, outputs, lib, config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.kernelParams = [ "mitigations=off" ];
+  boot.kernelParams = ["mitigations=off"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,7 +51,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -87,23 +91,25 @@
 
   # addtional hardware
   hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;  
-  hardware.opengl.extraPackages = with pkgs; [ amdvlk ];
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [amdvlk];
 
   environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
 
   # aditional software
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [pkgs.yubikey-personalization];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nclaud = {
     isNormalUser = true;
     description = "nclaud";
     home = "/home/nclaud";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
       git
+      fido2luks
+      libfido2
     ];
   };
 
@@ -118,12 +124,12 @@
     gnome.gnome-tweaks
     #trying hyprland
     kitty
-    pciutils 
-    ];
+    pciutils
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-   programs.mtr.enable = true;
+  programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
@@ -148,12 +154,12 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
   nix = {
-    registry = lib.mapAttrs(_: value: { flake = value; }) inputs;
-    
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
-       experimental-features = "nix-command flakes";
-       auto-optimise-store = true; 
-};
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+    };
   };
 }
