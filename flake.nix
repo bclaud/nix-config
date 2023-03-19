@@ -20,7 +20,10 @@
       flake = false;
     };
 
+    neovim-nighly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprwm-contrib.url = "github:hyprwm/contrib";
   };
 
   outputs = { self, nixpkgs, home-manager, lunarvim, hyprland, ... }@inputs:
@@ -78,8 +81,6 @@
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
-            #hyprland.homeManagerModules.default
-            #{wayland.windowManager.hyprland.enable = true;}
           ];
         };
       };

@@ -2,30 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
 { inputs, outputs, lib, config, pkgs, ... }: 
-let
-  # not working rn, needs both steam and gamescope
-  gamescopeSteam = pkgs.makeDesktopItem {
-    name = "Steam (Gamescope)";
-    exec = "${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -w 2560 -h 1440 -U -i -f -e -- ${pkgs.steam}/bin/steam -tenfoot -steamos -fulldesktopres";
-    comment = "Steam big picture running in gamescope";
-    desktopName = "Steam (Gamescope)";
-    categories = [ "Game" ];
-  };
-
-  steamTest = pkgs.steam.override {extraPkgs = pkgs: with pkgs; [
-    xorg.libXcursor
-    xorg.libXi
-    xorg.libXinerama
-    xorg.libXScrnSaver
-    libpng
-    libpulseaudio
-    libvorbis
-    stdenv.cc.cc.lib
-    libkrb5
-    keyutils
-  ];};
-
-in {
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -40,6 +17,7 @@ in {
     ./wezterm.nix
     ./nvim.nix
     ./fish.nix
+    ./gamescope_steam.nix
     #./mangohud.nix
   ];
 
@@ -49,6 +27,7 @@ in {
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.modifications
       outputs.overlays.additions
+      # inputs.neovim-nighly-overlay
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -78,7 +57,7 @@ in {
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker steamTest gamescope gamescopeSteam ];
+  home.packages = with pkgs; [ lazygit lazydocker gamescope ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
