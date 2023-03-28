@@ -22,8 +22,8 @@
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprwm-contrib.url = "github:hyprwm/contrib";
+    #hyprland.url = "github:hyprwm/Hyprland";
+    #hyprwm-contrib.url = "github:hyprwm/contrib";
   };
 
   outputs = {
@@ -31,7 +31,7 @@
     nixpkgs,
     home-manager,
     lunarvim,
-    hyprland,
+    #hyprland,
     neovim-nightly,
     ...
   } @ inputs: let

@@ -23,6 +23,7 @@
     ./nvim.nix
     ./fish.nix
     ./gamescope_steam.nix
+    ./vscodium
     #./mangohud.nix
   ];
 
@@ -61,7 +62,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [lazygit lazydocker gamescope vscodium];
+  home.packages = with pkgs; [ lazygit lazydocker gamescope ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
