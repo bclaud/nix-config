@@ -2,7 +2,9 @@ set fish_greeting " Praise the sun "
 
 # this should be handled by yubikey-agent, not here. But is probably conflicting
 
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+set -x GPG_TTY (tty)
+set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 #starship
 starship init fish | source
