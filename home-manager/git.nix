@@ -5,7 +5,7 @@
     userEmail = "bruarrais@gmail.com";
     signing = {
       key = "35386231585A5918";
-      signByDefault = false;
+      signByDefault = true;
     };
     aliases = {
       l = "log --pretty=format:'%C(yellow)%h%Creset %ad | %Cgreen%s%Creset %Cred%d%Creset %Cblue[%an]' --date=short";
