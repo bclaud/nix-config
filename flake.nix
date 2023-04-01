@@ -15,24 +15,28 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
-    lunarvim = {
-      url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
-      flake = false;
-    };
+    #lunarvim = {
+    #  url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
+    #  flake = false;
+    # };
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     #hyprland.url = "github:hyprwm/Hyprland";
     #hyprwm-contrib.url = "github:hyprwm/contrib";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    lunarvim,
+    #lunarvim,
     #hyprland,
     neovim-nightly,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -78,6 +82,7 @@
         modules = [
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
+	  sops-nix.nixosmodules.sops
         ];
       };
     };

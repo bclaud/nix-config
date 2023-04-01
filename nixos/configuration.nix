@@ -54,7 +54,7 @@
   services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -106,8 +106,6 @@
     packages = with pkgs; [
       firefox
       git
-      fido2luks
-      libfido2
     ];
   };
 
@@ -120,18 +118,26 @@
     vim
     wget
     gnome.gnome-tweaks
-    #trying hyprland
-    kitty
-    pciutils
+    pass
+    gnupg
+    yubikey-manager
+    pinentry-curses
+    libfido2
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+
+  # gpg
+   #programs.gnupg.agent = {
+   #  enable = true;
+     #enableSSHSupport = true;
+   #};
+   services.pcscd.enable = true;
+
+   # yubikey ssh agent??
+   services.yubikey-agent.enable = true;
 
   # List services that you want to enable:
 

@@ -22,9 +22,10 @@
     ./wezterm.nix
     ./nvim.nix
     ./fish.nix
-    ./gamescope_steam.nix
+    #./gamescope_steam.nix
     ./vscodium
     #./mangohud.nix
+    ./yubikey-agent.nix
   ];
 
   nixpkgs = {
@@ -62,7 +63,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker gamescope ];
+  home.packages = with pkgs; [ lazygit lazydocker steam easyeffects ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
