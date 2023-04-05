@@ -4,7 +4,7 @@
     userName = "Bruno Claudino";
     userEmail = "bruarrais@gmail.com";
     signing = {
-      key = "35386231585A5918";
+      key = "70BB68EF03BF0AAF";
       signByDefault = true;
     };
     aliases = {

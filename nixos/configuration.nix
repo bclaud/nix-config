@@ -130,10 +130,10 @@
   programs.mtr.enable = true;
 
   # gpg
-   #programs.gnupg.agent = {
-   #  enable = true;
-     #enableSSHSupport = true;
-   #};
+   programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+   };
    services.pcscd.enable = true;
 
    # yubikey ssh agent??

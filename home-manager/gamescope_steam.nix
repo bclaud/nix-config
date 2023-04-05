@@ -23,5 +23,5 @@
       ];
   };
 in {
-  home.packages = [ gamescopeSteam mySteam gamescope ];
+  home.packages = [ gamescopeSteam mySteam pkgs.gamescope ];
 }
