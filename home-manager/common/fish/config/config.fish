@@ -25,8 +25,6 @@ alias n="nvim"
 alias zj="zellij"
 alias zje="zellij run -- nvim ."
 
-# TODO move it to home-manager
-set -x EDITOR nvim
 
 #direnv
 direnv hook fish | source

@@ -94,9 +94,6 @@
 
   environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
 
-  # TODO move it to home-manager
-  environment.variables.EDITOR = "nvim";
-
   # aditional software
   services.udev.packages = [pkgs.yubikey-personalization];
 
