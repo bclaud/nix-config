@@ -24,7 +24,3 @@ alias n="nvim"
 
 alias zj="zellij"
 alias zje="zellij run -- nvim ."
-
-
-#direnv
-direnv hook fish | source
