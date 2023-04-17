@@ -2,7 +2,7 @@
   home.packages = with pkgs; [wezterm];
 
   xdg.configFile.wezterm = {
-    source = ./wezterm;
+    source = ./config;
     recursive = true;
   };
 }

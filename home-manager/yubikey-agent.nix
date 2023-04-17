@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+# NOT WORKING
 let
   socketPath = "${config.home.homeDirectory}/yubikey-agent.sock";
 in

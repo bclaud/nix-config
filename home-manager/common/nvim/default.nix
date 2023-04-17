@@ -4,7 +4,7 @@
   programs.neovim.defaultEditor = true;
   
   xdg.configFile.nvim = {
-    source = ./nvim;
+    source = ./config;
     recursive = true;
   };
 }
