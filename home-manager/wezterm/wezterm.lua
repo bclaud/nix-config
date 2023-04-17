@@ -1,24 +1,24 @@
-local wezterm = require 'wezterm';
+local wezterm = require 'wezterm'
+local act = wezterm.action
 
-local padding = {
-  left = "0.5cell",
-  right= "0.5cell",
-  top = "0.5cell",
-  bottom= "1.5cell"
+config = wezterm.config_builder()
+
+config.enable_wayland = true
+
+config.color_scheme = 'AdventureTime'
+config.window_background_opacity = 0.75
+
+config.font_size = 17.0
+config.font = wezterm.font("JetBrains Mono")
+config.hide_tab_bar_if_only_one_tab = true
+
+config.disable_default_key_bindings = true
+
+config.default_prog = { 'fish', '-l' }
+
+config.keys = {
+    { key = 'V', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+    { key = 'C', mods = 'CTRL', action = act.CopyTo 'ClipboardAndPrimarySelection' },
 }
 
-return {
-  enable_wayland = true,
-  font_size = 17.0,
-  font = wezterm.font("JetBrains Mono"),
-
-  hide_tab_bar_if_only_one_tab = true,
-
-  color_scheme = "Dark Pastel",
-  window_background_opacity = 0.75,
-  -- window_decorations = "RESIZE",
-
-  default_prog = { 'fish', '-l' }
-  
-  }
-
+return config

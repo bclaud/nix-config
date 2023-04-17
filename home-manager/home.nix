@@ -24,8 +24,10 @@
     ./fish.nix
     #./gamescope_steam.nix
     ./vscodium
+    #broken
     #./mangohud.nix
     ./yubikey-agent.nix
+    ./zellij
   ];
 
   nixpkgs = {
@@ -63,7 +65,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker ];
+  home.packages = with pkgs; [ lazygit lazydocker gptcommit heroic ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

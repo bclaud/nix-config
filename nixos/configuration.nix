@@ -94,6 +94,9 @@
 
   environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
 
+  # TODO move it to home-manager
+  environment.variables.EDITOR = "nvim";
+
   # aditional software
   services.udev.packages = [pkgs.yubikey-personalization];
 
@@ -117,12 +120,12 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    gnome.gnome-tweaks
     pass
     gnupg
     yubikey-manager
     pinentry-curses
     libfido2
+    mesa_23
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -138,6 +141,11 @@
 
    # yubikey ssh agent??
    services.yubikey-agent.enable = true;
+
+
+  # Docker
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "nclaud" ];
 
   # List services that you want to enable:
 

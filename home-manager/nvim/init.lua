@@ -112,6 +112,8 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 -- Set highlight on search
 vim.o.hlsearch = false
 
+vim.opt.clipboard = 'unnamedplus'
+
 -- Make line numbers default
 vim.wo.number = true
 
@@ -354,7 +356,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'lua_ls', 'elixirls', 'tsserver', 'nil_ls' }
+local servers = { 'lua_ls', 'elixirls', 'tsserver', 'nil_ls', 'pyright' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {

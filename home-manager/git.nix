@@ -12,6 +12,8 @@
       s = "status -s";
       c = "commit -m";
       cs = "commit -S -m";
+      f = "fetch";
+      ai = "commit -a";
     };
   };
 }
