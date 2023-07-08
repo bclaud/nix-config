@@ -4,8 +4,7 @@
   inputs,
   outputs,
   lib,
-  config,
-  pkgs,
+  config, pkgs,
   ...
 }:
 let
@@ -16,7 +15,7 @@ in
   {
   # You can import other home-manager modules here
 
-  imports = common;
+  imports = common ++ gaming;
 
   nixpkgs = {
     # You can add overlays here
@@ -53,7 +52,7 @@ in
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ lazygit lazydocker gptcommit ];
+  home.packages = with pkgs; [ lazygit lazydocker gptcommit gamemode kdenlive chromium upscayl ];
 
   # Enable home-manager
   programs.home-manager.enable = true;

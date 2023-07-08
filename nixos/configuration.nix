@@ -53,10 +53,15 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = ["amdgpu"];
 
-  # Enable the GNOME Desktop Environment.
+ # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Disable eleep and suspend
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -85,14 +90,14 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # addtional hardware
+  hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [amdvlk];
+  hardware.opengl.extraPackages = with pkgs; [amdvlk rocm-opencl-icd rocm-opencl-runtime ];
 
-  environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
+  #environment.variables.AMD_VULKAN_ICD = "RADV"; # use radv
 
   # aditional software
   services.udev.packages = [pkgs.yubikey-personalization];
@@ -122,7 +127,6 @@
     yubikey-manager
     pinentry-curses
     libfido2
-    mesa_23
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -147,13 +151,24 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    # settings = { 
+    #   permitRootLogin = "yes";
+    # };
+  };
+
+  # trying nix-serve
+  services.nix-serve= {
+    enable = true;
+
+    };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -169,6 +184,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      trusted-users = [ "nclaud" ];
     };
   };
 }
